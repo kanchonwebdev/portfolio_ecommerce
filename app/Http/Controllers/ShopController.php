@@ -49,7 +49,7 @@ class ShopController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255|unique:shops',
+            'name' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:1024',
             'quantity' => 'required|integer',
             'maxOrder' => 'required|integer',
@@ -99,7 +99,7 @@ class ShopController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'image' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'quantity' => 'required|integer',
             'maxOrder' => 'required|integer',
             'price' => 'required|numeric',
@@ -110,8 +110,16 @@ class ShopController extends Controller
         ]);
 
         $shop = Shop::findOrFail($id);
-        $shop->update($request->all());
+        $data = $request->except('image');
 
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads'), $filename);
+            $data['image'] = 'uploads/' . $filename;
+        }
+
+        $shop->update($data);
         return back()->with('success', 'Shop updated successfully.');
     }
 

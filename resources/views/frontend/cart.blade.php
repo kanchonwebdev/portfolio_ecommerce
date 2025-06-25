@@ -13,7 +13,7 @@
     <div class="nav-section">
         <div class="grid">
             <div class="col">
-                <a href="" class="logo">barrique</a>
+                <a href="" class="logo">New Shop</a>
             </div>
             <div class="col">
                 <div class="inline">
@@ -197,7 +197,7 @@
             </div>
             <div class="col">
                 <div class="card">
-                    <h3 class="title">Get the latest from barrique</h3>
+                    <h3 class="title">Get the latest from New Shop</h3>
 
                     <p class="text">Don't miss our news about glamorous products and sparkling events</p>
 

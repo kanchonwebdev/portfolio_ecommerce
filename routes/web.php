@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ProductController;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,18 @@ Route::get('shop/show/{id}', [ShopController::class, 'show'])->name('product.sho
 Route::get('shop/edit/{id}', [ShopController::class, 'edit'])->name('product.edit');
 Route::put('shop/update/{id}', [ShopController::class, 'update'])->name('product.update');
 Route::delete('shop/destroy/{id}', [ShopController::class, 'destroy'])->name('product.destroy');
+
+/* product controller */
+Route::get('product/index', [ProductController::class, 'index'])->name('shop.index');
+Route::get('product/show/{id}', [ProductController::class, 'show'])->name('shop.show');
+Route::get('product/checkout', [ProductController::class, 'checkout'])->name('shop.checkout');
+Route::post('product/add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('shop.addToCart');
+Route::get('product/remove-from-cart/{id}', [ProductController::class, 'removeFromCart'])->name('shop.removeFromCart');
+Route::get('product/view-cart', [ProductController::class, 'viewCart'])->name('shop.viewCart');
+Route::get('product/clear-cart', [ProductController::class, 'clearCart'])->name('shop.clearCart');
+Route::post('product/update-cart', [ProductController::class, 'updateCart'])->name('shop.updateCart');
+Route::get('product/cart', [ProductController::class, 'cart'])->name('shop.cart');
+
 
 
 Route::get('/', function () {

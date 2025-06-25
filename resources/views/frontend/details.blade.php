@@ -14,7 +14,7 @@
     <div class="nav-section">
         <div class="grid">
             <div class="col">
-                <a href="" class="logo">barrique</a>
+                <a href="" class="logo">New Shop</a>
             </div>
             <div class="col">
                 <div class="inline">
@@ -38,7 +38,7 @@
         <div class="grid">
             <div class="col">
                 <div class="img">
-                    <img src="img/1.jpg" alt="">
+                    <img src="{{asset('img/1.jpg')}}" alt="">
                 </div>
                 <div class="text-block">
                     <p class="m-title">A unique experience</p>
@@ -56,28 +56,7 @@
             <div class="col">
                 <div class="card">
                     <div class="img">
-                        <img src="img/2.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="img">
-                        <img src="img/2.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="img">
-                        <img src="img/2.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="img">
-                        <img src="img/2.png" alt="">
+                        <img src="{{asset($product->image)}}" alt="{{$product->name}}">
                     </div>
                 </div>
             </div>
@@ -86,18 +65,10 @@
             <div class="col">
                 <div class="card">
                     <div class="text-block">
-                        <h1 class="title">Polo Shirt</h1>
+                        <h1 class="title">{{ $product->name }}</h1>
 
-                        <p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, mollitia eos.
-                            Magnam ducimus harum quae, nihil in assumenda eveniet vitae doloremque illum unde velit sed.
-                            Autem officia fugiat blanditiis harum!</p>
                         <p class="text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, rem soluta, nisi hic rerum,
-                            nostrum sint temporibus nulla autem officia harum mollitia modi atque suscipit expedita
-                            assumenda numquam. Fugiat, saepe!
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius autem ratione quis nostrum
-                            vero ducimus, asperiores sapiente laborum tempore velit culpa totam corporis eaque, est
-                            exercitationem, quam architecto quia veniam.
+                            {{ $product->description }}
                         </p>
                     </div>
                 </div>
@@ -149,28 +120,7 @@
             <div class="col">
                 <div class="card">
                     <div class="img">
-                        <img src="img/2.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="img">
-                        <img src="img/2.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="img">
-                        <img src="img/2.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="img">
-                        <img src="img/2.png" alt="">
+                        <img src="{{asset($product->image)}}" alt="{{$product->name}}">
                     </div>
                 </div>
             </div>
@@ -179,18 +129,10 @@
             <div class="col">
                 <div class="card">
                     <div class="text-block">
-                        <h1 class="title">Polo Shirt</h1>
+                        <h1 class="title">{{$product->name}}</h1>
 
-                        <p class="text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illum, mollitia eos.
-                            Magnam ducimus harum quae, nihil in assumenda eveniet vitae doloremque illum unde velit sed.
-                            Autem officia fugiat blanditiis harum!</p>
                         <p class="text">
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere, rem soluta, nisi hic rerum,
-                            nostrum sint temporibus nulla autem officia harum mollitia modi atque suscipit expedita
-                            assumenda numquam. Fugiat, saepe!
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eius autem ratione quis nostrum
-                            vero ducimus, asperiores sapiente laborum tempore velit culpa totam corporis eaque, est
-                            exercitationem, quam architecto quia veniam.
+                            {{$product->description}}
                         </p>
                     </div>
                 </div>
@@ -200,144 +142,27 @@
                     <div class="text-block">
                         <h1 class="title">Other Details</h1>
                         <div class="block">
-                            <b>Max Order: </b> 01
+                            <b>Max Order: </b> {{$product->maxOrder}}
                         </div>
 
                         <div class="block">
-                            <b>Available Quantity: </b> 01
+                            <b>Available Quantity: </b> {{$product->quantity}}
                         </div>
 
                         <div class="block">
-                            <b>Tags: </b> <a href="">Shirt</a> <a href="">Polo</a> <a href="">Shirt</a>
+                            <b>Tags: </b> <a href="">{{$product->tag_id}}</a>
                         </div>
 
                         <div class="block">
-                            <b>Categories: </b> <a href="">Shirt</a> <a href="">Polo</a> <a href="">Shirt</a>
+                            <b>Categories: </b> <a href="">{{$product->category_id}}</a>
                         </div>
                         <div class="block">
-                            <b>Status: </b> In Stock
-                        </div>
-
-                        <div class="block">
-                            <b>Is Gift: </b> Yes
-                        </div>
-                        <div class="block">
-                            <b>Is Combo: </b> No
-                        </div>
-                        <div class="block">
-                            <b>Discount: </b> 10%
+                            <b>Status: </b> {{$product->status}}
                         </div>
                     </div>
 
                     <div class="btn-block">
                         <a href="" class="btn">add to card</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- food-section -->
-    <div class="food-section">
-        <div class="grid">
-            <div class="col">
-                <div class="card b-none">
-                    <div class="text-block">
-                        <h2 class="title">food</h2>
-                        <p class="text text-left">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed ad nisi
-                            soluta temporibus, delectus laborum recusandae reprehenderit sapiente officia perferendis
-                            quos modi eius molestiae explicabo? Necessitatibus veniam optio sequi maxime.</p>
-                    </div>
-                    <div class="btn-block">
-                        <a href="" class="btn">visit our shop</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="grid-4">
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -398,7 +223,7 @@
             </div>
             <div class="col">
                 <div class="card">
-                    <h3 class="title">Get the latest from barrique</h3>
+                    <h3 class="title">Get the latest from New Shop</h3>
 
                     <p class="text">Don't miss our news about glamorous products and sparkling events</p>
 

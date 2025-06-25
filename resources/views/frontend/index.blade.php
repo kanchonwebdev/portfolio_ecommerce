@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E commerce - Homepage</title>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -15,7 +16,7 @@
     <div class="nav-section">
         <div class="grid">
             <div class="col">
-                <a href="" class="logo">barrique</a>
+                <a href="" class="logo">New Shop</a>
             </div>
             <div class="col">
                 <div class="inline">
@@ -39,7 +40,7 @@
         <div class="grid">
             <div class="col">
                 <div class="img">
-                    <img src="img/1.jpg" alt="">
+                    <img src="{{asset('img/1.jpg')}}" alt="">
                 </div>
                 <div class="text-block">
                     <p class="m-title">A unique experience</p>
@@ -54,95 +55,31 @@
         <div class="grid">
             <div class="col">
                 <div class="grid-4">
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-                            <div class="offer-block">
-                                <div class="gift">Gift</div>
-                                <div class="discount">Discount</div>
-                                <div class="combo">Combo</div>
-                            </div>
+                    @foreach ($collection as $item)
+                        <div class="col">
+                            <div class="card">
+                                <div class="img">
+                                    <img src="{{asset($item->image)}}" alt="">
+                                </div>
+                                <div class="text-block">
+                                    <h3 class="m-title">
+                                        <a href="{{ route('shop.show', $item->id)}}">{{$item->name}}</a>
+                                    </h3>
+                                    <p class="text">&dollar; {{$item->price}} USD</p>
+                                </div>
 
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
+                                <div class="btn-inline">
+                                    <a href="" class="cart-btn">
+                                        Add cart
+                                    </a>
 
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
+                                    <a href="" class="quick-view">
+                                        Quick view
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -244,27 +181,7 @@
     </div>
 
     <div class="pagination-section">
-        <div class="grid">
-            <div class="col">
-                <div class="text">Items per page</div>
-                <select name="" id="">
-                    <option value="">10</option>
-                </select>
-            </div>
-            <div class="col">
-                <button>Prev</button>
-                <div class="text">
-                    1/5
-                </div>
-                <button>next</button>
-            </div>
-
-            <div class="col">
-                <div class="text">
-                    Showing 0 to 10 of 49 entries
-                </div>
-            </div>
-        </div>
+        {{ $collection->links() }}
     </div>
 
     <!-- footer section -->
@@ -321,7 +238,7 @@
             </div>
             <div class="col">
                 <div class="card">
-                    <h3 class="title">Get the latest from barrique</h3>
+                    <h3 class="title">Get the latest from New Shop</h3>
 
                     <p class="text">Don't miss our news about glamorous products and sparkling events</p>
 

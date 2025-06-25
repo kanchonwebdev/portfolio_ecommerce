@@ -39,6 +39,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-body">
+                                    <img src="{{asset($collection->image)}}" alt="">
                                     <h2 class="card-title">Product Name: {{$collection->name}}</h2>
                                     <p class="card-text">Description: {{$collection->description}}</p>
                                 </div>
@@ -47,8 +48,8 @@
                                     <li class="list-group-item"><b>Quantity:</b> {{$collection->quantity}}</li>
                                     <li class="list-group-item"><b>Max Order:</b> {{$collection->maxOrder}}</li>
                                     <li class="list-group-item"><b>Price:</b> {{$collection->price}}</li>
-                                    <li class="list-group-item"><b>Tag:</b> {{$collection->tag_id}}</li>
-                                    <li class="list-group-item"><b>Category:</b> {{$collection->category}}</li>
+                                    <li class="list-group-item"><b>Tag:</b> {{$collection->tag->name}}</li>
+                                    <li class="list-group-item"><b>Category:</b> {{$collection->category->name}}</li>
                                 </ul>
                                 <div class="card-body">
                                     <a href="{{ route('product.edit', $collection->id) }}" class="card-link btn btn-success">Update</a>

@@ -7,12 +7,18 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- Fonts -->
+        <style>
+            @import"https://fonts.googleapis.com/css2?family=Chau+Philomene+One:ital@0;1&display=swap";
+
+            * {
+                box-sizing: border-box;
+                font-family: "Chau Philomene One", sans-serif !important
+            }
+        </style>
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">

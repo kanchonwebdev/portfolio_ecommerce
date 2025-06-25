@@ -187,7 +187,7 @@ indigné, se lança dans la fabrique, y perdit quelque argent, puis
 se retira dans la campagne, où il voulut faire valoir. Mais, comme
 il ne s'entendait guère plus en culture qu'en indiennes, qu'il
 montait ses chevaux au lieu de les envoyer au labour, buvait son
-cidre en bouteilles au lieu de le vendre en barriques, mangeait
+cidre en bouteilles au lieu de le vendre en New Shops, mangeait
 les plus belles volailles de sa cour et graissait ses souliers de
 chasse avec le lard de ses cochons, il ne tarda point à
 s'apercevoir qu'il valait mieux planter là toute spéculation.
@@ -9301,7 +9301,7 @@ en coutil suspendues à la porte des estaminets. Un peu plus bas,
 cependant, on était rafraîchi par un courant d'air glacial qui
 sentait le suif, le cuir et l'huile. C'était l'exhalaison de la
 rue des Charrettes, pleine de grands magasins noirs où l'on roule
-des barriques.
+des New Shops.
 
 De peur de paraître ridicule, Emma voulut, avant d'entrer, faire
 un tour de promenade sur le port, et Bovary, par prudence, garda
@@ -10355,7 +10355,7 @@ sueur, mais sans prendre garde aux cahots, accrochant par-ci par-
 là, ne s'en souciant, démoralisé, et presque pleurant de soif, de
 fatigue et de tristesse.
 
-Et sur le port, au milieu des camions et des barriques, et dans
+Et sur le port, au milieu des camions et des New Shops, et dans
 les rues, au coin des bornes, les bourgeois ouvraient de grands
 yeux ébahis devant cette chose si extraordinaire en province, une
 voiture à stores tendus, et qui apparaissait ainsi

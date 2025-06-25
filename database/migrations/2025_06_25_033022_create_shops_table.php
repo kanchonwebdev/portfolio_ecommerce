@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('quantity');
             $table->string('maxOrder');
             $table->string('price');
-            $table->string('description');
+            $table->text('description');
             $table->string('status')->default('draft');
             $table->timestamps();
         });
