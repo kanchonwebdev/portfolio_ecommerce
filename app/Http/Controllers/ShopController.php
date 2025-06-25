@@ -50,17 +50,26 @@ class ShopController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255|unique:shops',
-            'image' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:1024',
             'quantity' => 'required|integer',
             'maxOrder' => 'required|integer',
             'price' => 'required|numeric',
             'description' => 'nullable|string',
-            'status' => 'required|boolean',
+            'status' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'tag_id' => 'required|exists:tags,id',
         ]);
 
-        Shop::create($request->all());
+        $data = $request->except('image');
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads'), $filename);
+            $data['image'] = 'uploads/' . $filename;
+        }
+
+        Shop::create($data);
 
         if ($request->ajax()) {
             return response()->json(['message' => 'Shop created successfully.']);

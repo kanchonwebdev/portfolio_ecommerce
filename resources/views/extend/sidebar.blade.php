@@ -12,6 +12,15 @@
             <li class="list-group-item">
                 <a href="{{ route('dashboard') }}">Dashboard</a>
             </li>
+            <li class="list-group-item">
+                <a href="{{ route('product.index') }}">Product</a>
+            </li>
+            <li class="list-group-item">
+                <a href="{{ route('category.index') }}">Category</a>
+            </li>
+            <li class="list-group-item">
+                <a href="{{ route('tag.index') }}">Tag</a>
+            </li>
         </ul>
     </div>
 </div>
