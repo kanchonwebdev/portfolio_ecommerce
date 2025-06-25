@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E commerce - Homepage</title>
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+</head>
+
+<body>
+    <!-- nav section -->
+    <div class="nav-section">
+        <div class="grid">
+            <div class="col">
+                <a href="" class="logo">barrique</a>
+            </div>
+            <div class="col">
+                <div class="inline">
+                    <a href="">About</a>
+                    <a href="">Menu</a>
+                    <a href="">SHop</a>
+                    <a href="">Cotact</a>
+                </div>
+            </div>
+            <div class="col">
+                <div class="inline">
+                    <a href="">search</a>
+                    <a href="">cart <sup>04</sup></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- hero section -->
+    <div class="hero-section">
+        <div class="grid">
+            <div class="col">
+                <div class="img">
+                    <img src="img/1.jpg" alt="">
+                </div>
+                <div class="text-block">
+                    <p class="m-title">A unique experience</p>
+                    <h1 class="title">Checkout</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- checkout section -->
+    <div class="checkout-section">
+        <div class="grid">
+            <div class="col">
+                <div class="card">
+                    <div class="inline">
+                        <p class="text">customer info</p>
+                        <p class="text">*required</p>
+                    </div>
+                    <div class="block">
+                        <label for="email">email*</label>
+                        <input type="email" name="" id="email">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="inline">
+                        <p class="text">shipping address</p>
+                        <p class="text">*required</p>
+                    </div>
+                    <div class="block">
+                        <label for="name">Full name *</label>
+                        <input type="text" name="" id="name">
+                    </div>
+                    <div class="block">
+                        <label for="address">Street address *</label>
+                        <input type="text" name="" id="address">
+                        <br>
+                        <input type="text" name="" id="address">
+                    </div>
+                    <div class="grid-3">
+                        <div class="block">
+                            <label for="city">city *</label>
+                            <input type="text" name="" id="city">
+                        </div>
+                        <div class="block">
+                            <label for="state">state/province *</label>
+                            <input type="text" name="" id="state">
+                        </div>
+                        <div class="block">
+                            <label for="zip">zip/postal Code *</label>
+                            <input type="text" name="" id="zip">
+                        </div>
+                    </div>
+                    <div class="block">
+                        <label for="country">country *</label>
+                        <select name="" id="country">
+                            <option value="germany">Germany</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="inline">
+                        <p class="text">payment info</p>
+                        <p class="text">*required</p>
+                    </div>
+                    <div class="block">
+                        <label for="card">card number *</label>
+                        <input type="text" name="" id="card">
+                    </div>
+                    <div class="grid-2">
+                        <div class="block">
+                            <label for="date">expiration date *</label>
+                            <input type="text" name="" id="date">
+                        </div>
+                        <div class="block">
+                            <label for="code">security code *</label>
+                            <input type="text" name="" id="code">
+                        </div>
+                    </div>
+                    <div class="block inline-block">
+                        <input type="checkbox" name="" id="same">
+                        <label class="text" for="same">Billing address same as shipping</label>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="inline">
+                        <p class="text">items in order</p>
+                    </div>
+                    <div class="block">
+                        <div class="grid-2 border">
+                            <div class="card-inline">
+                                <div class="img">
+                                    <img src="img/2.png" alt="">
+                                </div>
+                                <div class="text-block">
+                                    <h3 class="title">Polo Shirt</h3>
+                                    <p class="text">quantity: <b>10</b></p>
+                                    <p class="text">size: <b>medium</b></p>
+                                </div>
+                            </div>
+                            <div class="card-inline ml-100">
+                                <p class="price">&dollar; 13.23 USD</p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="grid-2 border">
+                            <div class="card-inline">
+                                <div class="img">
+                                    <img src="img/2.png" alt="">
+                                </div>
+                                <div class="text-block">
+                                    <h3 class="title">Polo Shirt</h3>
+                                    <p class="text">quantity: <b>10</b></p>
+                                    <p class="text">size: <b>medium</b></p>
+                                </div>
+                            </div>
+                            <div class="card-inline ml-100">
+                                <p class="price">&dollar; 13.23 USD</p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="grid-2 border">
+                            <div class="card-inline">
+                                <div class="img">
+                                    <img src="img/2.png" alt="">
+                                </div>
+                                <div class="text-block">
+                                    <h3 class="title">Polo Shirt</h3>
+                                    <p class="text">quantity: <b>10</b></p>
+                                    <p class="text">size: <b>medium</b></p>
+                                </div>
+                            </div>
+                            <div class="card-inline ml-100">
+                                <p class="price">&dollar; 13.23 USD</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="inline">
+                        <p class="text">order summary</p>
+                    </div>
+                    <div class="block">
+                        <div class="grid-2">
+                            <div class="card-inline">
+                                <p class="text">subtotal</p>
+                            </div>
+                            <div class="card-inline">
+                                <p class="text">&dollar; 200 usd</p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="grid-2">
+                            <div class="card-inline">
+                                <p class="text">total</p>
+                            </div>
+                            <div class="card-inline">
+                                <p class="text">&dollar; 250 usd</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="block">
+                        <label for="discount">discount code</label>
+                        <input type="text" name="" id="discount">
+                        <br>
+                        <button type="submit">apply</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="block">
+                        <button type="submit">place order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer section -->
+    <div class="footer-section">
+        <div class="grid">
+            <div class="col">
+                <div class="card">
+                    <h3 class="title">Navigation</h3>
+
+                    <div class="inline">
+                        <a href="" data-text="About">About</a>
+                        <a href="" data-text="Menu">Menu</a>
+                        <a href="" data-text="Contact">Contact</a>
+                        <a href="" data-text="Shop">Shop</a>
+                        <a href="" data-text="Checkout">Checkout</a>
+                        <a href="" data-text="Cart">Cart</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <h3 class="title">Services</h3>
+
+                    <div class="inline">
+                        <a href="">Privacy & Policy</a>
+                        <a href="">Terms of use</a>
+                        <a href="">Syle guide</a>
+                        <a href="">Licence</a>
+                        <a href="">Search</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <h3 class="title">Contact</h3>
+
+                    <div class="inline">
+                        <a href="">000 000 000 00</a>
+                        <a href="">info@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <h3 class="title">Social</h3>
+
+                    <div class="inline">
+                        <a href="">facebook</a>
+                        <a href="">instagram</a>
+                        <a href="">twitter</a>
+                        <a href="">linkedin</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <h3 class="title">Get the latest from barrique</h3>
+
+                    <p class="text">Don't miss our news about glamorous products and sparkling events</p>
+
+                    <form method="post" class="form">
+                        <input type="email" placeholder="Enter your email" name="" id="">
+                        <input type="submit" value="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
