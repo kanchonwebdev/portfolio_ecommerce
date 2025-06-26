@@ -37,7 +37,7 @@
         <div class="grid">
             <div class="col">
                 <div class="img">
-                    <img src="img/1.jpg" alt="">
+                    <img src="{{asset('img/1.jpg')}}" alt="">
                 </div>
                 <div class="text-block">
                     <p class="m-title">A unique experience</p>
@@ -125,54 +125,42 @@
                     <div class="inline">
                         <p class="text">items in order</p>
                     </div>
+                    @php
+$cart = session('cart') ?? [];
+$total = 0;
+if (count($cart) > 0) {
+    foreach ($cart as $item) {
+        $total += $item['price'] * $item['quantity'];
+    }
+}
+
+$shipping = $total * 0.15;
+$totalWithShipping = $total + $shipping;
+                    @endphp
                     <div class="block">
-                        <div class="grid-2 border">
-                            <div class="card-inline">
-                                <div class="img">
-                                    <img src="img/2.png" alt="">
+                        @if (count($cart) > 0)
+                            @foreach ($cart as $key => $item)
+                                <div class="grid-2 border">
+                                    <div class="card-inline">
+                                        <div class="img">
+                                            <img src="{{asset($item['image'])}}" alt="{{$item['name']}}">
+                                        </div>
+                                        <div class="text-block">
+                                            <h3 class="title">{{$item['name']}}</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-inline ml-100">
+                                        <p class="price">&dollar; {{$item['price'] * $item['quantity']}} USD</p>
+                                        <p class="text">quantity: <b>{{$item['quantity']}}</b></p>
+                                    </div>
                                 </div>
-                                <div class="text-block">
-                                    <h3 class="title">Polo Shirt</h3>
-                                    <p class="text">quantity: <b>10</b></p>
-                                    <p class="text">size: <b>medium</b></p>
-                                </div>
+                                <br>
+                            @endforeach
+                        @else
+                            <div class="grid-2 border">
+                                <p class="text">Your cart is empty</p>
                             </div>
-                            <div class="card-inline ml-100">
-                                <p class="price">&dollar; 13.23 USD</p>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="grid-2 border">
-                            <div class="card-inline">
-                                <div class="img">
-                                    <img src="img/2.png" alt="">
-                                </div>
-                                <div class="text-block">
-                                    <h3 class="title">Polo Shirt</h3>
-                                    <p class="text">quantity: <b>10</b></p>
-                                    <p class="text">size: <b>medium</b></p>
-                                </div>
-                            </div>
-                            <div class="card-inline ml-100">
-                                <p class="price">&dollar; 13.23 USD</p>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="grid-2 border">
-                            <div class="card-inline">
-                                <div class="img">
-                                    <img src="img/2.png" alt="">
-                                </div>
-                                <div class="text-block">
-                                    <h3 class="title">Polo Shirt</h3>
-                                    <p class="text">quantity: <b>10</b></p>
-                                    <p class="text">size: <b>medium</b></p>
-                                </div>
-                            </div>
-                            <div class="card-inline ml-100">
-                                <p class="price">&dollar; 13.23 USD</p>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -187,7 +175,7 @@
                                 <p class="text">subtotal</p>
                             </div>
                             <div class="card-inline">
-                                <p class="text">&dollar; 200 usd</p>
+                                <p class="text">&dollar; {{$total}} USD</p>
                             </div>
                         </div>
                         <br>
@@ -196,7 +184,7 @@
                                 <p class="text">total</p>
                             </div>
                             <div class="card-inline">
-                                <p class="text">&dollar; 250 usd</p>
+                                <p class="text">&dollar; {{$totalWithShipping}} USD</p>
                             </div>
                         </div>
                     </div>
