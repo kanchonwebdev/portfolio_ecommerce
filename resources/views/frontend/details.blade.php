@@ -18,8 +18,8 @@
             </div>
             <div class="col">
                 <div class="inline">
-                    <a href="">Shop</a>
-                    <a href="">Checkout</a>
+                    <a href="{{ route('shop.all')}}">Shop</a>
+                    <a href="{{ route('shop.checkout')}}">Checkout</a>
                 </div>
             </div>
             <div class="col">

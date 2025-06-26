@@ -19,8 +19,8 @@
             </div>
             <div class="col">
                 <div class="inline">
-                    <a href="">Shop</a>
-                    <a href="">Checkout</a>
+                    <a href="{{ route('shop.all')}}">Shop</a>
+                    <a href="{{ route('shop.checkout')}}">Checkout</a>
                 </div>
             </div>
             <div class="col">
@@ -39,7 +39,7 @@
         <div class="grid">
             <div class="col">
                 <div class="img">
-                    <img src="img/1.jpg" alt="">
+                    <img src="{{asset('img/1.jpg')}}" alt="">
                 </div>
                 <div class="text-block">
                     <p class="m-title">A unique experience</p>
@@ -264,6 +264,10 @@
         </div>
     </div>
 
+    <div class="pagination-section">
+        {{ $collection->links() }}
+    </div>
+
     <div class="shop-details-section pop-up d-none">
         <div class="close-btn">
             close
@@ -272,28 +276,28 @@
             <div class="col">
                 <div class="card">
                     <div class="img">
-                        <img src="img/2.png" alt="">
+                        <img src="{{asset('img/2.png')}}" alt="">
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
                     <div class="img">
-                        <img src="img/2.png" alt="">
+                        <img src="{{asset('img/2.png')}}" alt="">
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
                     <div class="img">
-                        <img src="img/2.png" alt="">
+                        <img src="{{asset('img/2.png')}}" alt="">
                     </div>
                 </div>
             </div>
             <div class="col">
                 <div class="card">
                     <div class="img">
-                        <img src="img/2.png" alt="">
+                        <img src="{{asset('img/2.png')}}" alt="">
                     </div>
                 </div>
             </div>
@@ -428,6 +432,34 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function () {
+            $('.cart-btn').on('click', function (e) {
+                e.preventDefault();
+                const id = $(this).data('id');
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route("shop.addToCart", ":id") }}'.replace(':id', id),
+                    success: function (response) {
+                        console.log(response);
+                        $('#cartCount').text(response.cartCount);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+
     <script>
         const quickView = document.querySelectorAll('.quick-view');
         const popUp = document.querySelector('.shop-details-section');

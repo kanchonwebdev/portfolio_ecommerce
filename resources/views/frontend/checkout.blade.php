@@ -17,8 +17,8 @@
             </div>
             <div class="col">
                 <div class="inline">
-                    <a href="">Shop</a>
-                    <a href="">Checkout</a>
+                    <a href="{{ route('shop.all')}}">Shop</a>
+                    <a href="{{ route('shop.checkout')}}">Checkout</a>
                 </div>
             </div>
             <div class="col">
@@ -126,16 +126,16 @@
                         <p class="text">items in order</p>
                     </div>
                     @php
-$cart = session('cart') ?? [];
-$total = 0;
-if (count($cart) > 0) {
-    foreach ($cart as $item) {
-        $total += $item['price'] * $item['quantity'];
-    }
-}
+                        $cart = session('cart') ?? [];
+                        $total = 0;
+                        if (count($cart) > 0) {
+                            foreach ($cart as $item) {
+                                $total += $item['price'] * $item['quantity'];
+                            }
+                        }
 
-$shipping = $total * 0.15;
-$totalWithShipping = $total + $shipping;
+                        $shipping = $total * 0.15;
+                        $totalWithShipping = $total + $shipping;
                     @endphp
                     <div class="block">
                         @if (count($cart) > 0)

@@ -5,7 +5,6 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ProductController;
-use App\Models\Tag;
 use Illuminate\Support\Facades\Route;
 
 
@@ -37,6 +36,7 @@ Route::put('shop/update/{id}', [ShopController::class, 'update'])->name('product
 Route::delete('shop/destroy/{id}', [ShopController::class, 'destroy'])->name('product.destroy');
 
 /* product controller */
+Route::get('product/all', [ProductController::class, 'all'])->name('shop.all');
 Route::get('product/index', [ProductController::class, 'index'])->name('shop.index');
 Route::get('product/show/{id}', [ProductController::class, 'show'])->name('shop.show');
 Route::get('product/checkout', [ProductController::class, 'checkout'])->name('shop.checkout');
@@ -46,8 +46,6 @@ Route::get('product/view-cart', [ProductController::class, 'viewCart'])->name('s
 Route::get('product/clear-cart', [ProductController::class, 'clearCart'])->name('shop.clearCart');
 Route::post('product/update-cart', [ProductController::class, 'updateCart'])->name('shop.updateCart');
 Route::get('product/cart', [ProductController::class, 'cart'])->name('shop.cart');
-
-
 
 Route::get('/', function () {
     return view('welcome');

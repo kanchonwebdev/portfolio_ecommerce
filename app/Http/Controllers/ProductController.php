@@ -7,6 +7,13 @@ use App\Models\Shop;
 
 class ProductController extends Controller
 {
+    public function all()
+    {
+        $collection = Shop::paginate(8);
+
+        return view('frontend.shop', compact('collection'));
+    }
+
     public function index()
     {
         $collection = Shop::paginate(8);
