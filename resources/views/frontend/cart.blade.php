@@ -57,16 +57,16 @@
                         <p class="text">items in order</p>
                     </div>
                     @php
-                        $cart = session('cart') ?? [];
-                        $total = 0;
-                        if (count($cart) > 0) {
-                            foreach ($cart as $item) {
-                                $total += $item['price'] * $item['quantity'];
-                            }
-                        }
+$cart = session('cart') ?? [];
+$total = 0;
+if (count($cart) > 0) {
+    foreach ($cart as $item) {
+        $total += $item['price'] * $item['quantity'];
+    }
+}
 
-                        $shipping = $total * 0.15;
-                        $totalWithShipping = $total + $shipping;
+$shipping = $total * 0.15;
+$totalWithShipping = $total + $shipping;
                     @endphp
 
                     @if (count($cart) > 0)
@@ -217,7 +217,7 @@
                 const id = $(this).data('id');
                 $.ajax({
                     type: 'GET',
-                    url: '/product/remove-from-cart/' + id,
+                    url: '{{ route("shop.removeFromCart", ":id") }}'.replace(':id', id),
                     success: function (response) {
                         console.log(response);
                         $('#cartCount').text(response.cartCount);
@@ -251,7 +251,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: '/product/update-cart/',
+                    url: '{{ route("shop.updateCart") }}',
                     data: {
                         quantity: quantity,
                         id: id

@@ -245,7 +245,7 @@
                 const id = $(this).data('id');
                 $.ajax({
                     type: 'POST',
-                    url: '/product/add-to-cart/'+id,
+                    url: '{{ route("shop.addToCart", ":id") }}'.replace(':id', id),
                     success: function(response) {
                         console.log(response);
                         $('#cartCount').text(response.cartCount);
