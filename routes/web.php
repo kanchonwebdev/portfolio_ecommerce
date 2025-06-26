@@ -39,7 +39,6 @@ Route::delete('shop/destroy/{id}', [ShopController::class, 'destroy'])->name('pr
 Route::get('product/all', [ProductController::class, 'all'])->name('shop.all');
 Route::get('product/index', [ProductController::class, 'index'])->name('shop.index');
 Route::get('product/show/{id}', [ProductController::class, 'show'])->name('shop.show');
-Route::get('product/checkout', [ProductController::class, 'checkout'])->name('shop.checkout');
 Route::post('product/add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('shop.addToCart');
 Route::get('product/remove-from-cart/{id}', [ProductController::class, 'removeFromCart'])->name('shop.removeFromCart');
 Route::get('product/view-cart', [ProductController::class, 'viewCart'])->name('shop.viewCart');
@@ -54,6 +53,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('product/checkout', [ProductController::class, 'checkout'])->middleware(['auth', 'verified'])->name('shop.checkout');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
