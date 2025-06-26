@@ -78,7 +78,7 @@
                                             <img src="{{asset($item['image'])}}" alt="">
                                         </div>
                                         <div class="text-block">
-                                            <h3 class="title">${{ $item['name'] }}</h3>
+                                            <h3 class="title">{{ $item['name'] }}</h3>
                                         </div>
                                     </div>
                                     <div class="card-inline ml-100">

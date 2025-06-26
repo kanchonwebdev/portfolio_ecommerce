@@ -17,16 +17,16 @@
             </div>
             <div class="col">
                 <div class="inline">
-                    <a href="">About</a>
-                    <a href="">Menu</a>
-                    <a href="">SHop</a>
-                    <a href="">Cotact</a>
+                    <a href="">Shop</a>
+                    <a href="">Checkout</a>
                 </div>
             </div>
             <div class="col">
                 <div class="inline">
-                    <a href="">search</a>
-                    <a href="">cart <sup>04</sup></a>
+                    <a href="">Login into Foodpanda</a>
+                    <a href="{{ route('shop.cart')}}">
+                        cart <sup id="cartCount">{{ session('cart') ? count(session('cart')) : 0 }}</sup>
+                    </a>
                 </div>
             </div>
         </div>
