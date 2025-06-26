@@ -91,174 +91,31 @@
             </div>
             <div class="col">
                 <div class="grid-4">
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
+                    @foreach ($collection as $item)
+                        <div class="col">
+                            <div class="card">
+                                <div class="img">
+                                    <img src="{{asset($item->image)}}" alt="">
+                                </div>
+                                <div class="text-block">
+                                    <h3 class="m-title">
+                                        <a href="{{ route('shop.show', $item->id)}}">{{$item->name}}</a>
+                                    </h3>
+                                    <p class="text">&dollar; {{$item->price}} USD</p>
+                                </div>
 
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
+                                <div class="btn-inline">
+                                    <a href="" data-id="{{$item->id}}" class="cart-btn">
+                                        Add cart
+                                    </a>
 
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
+                                    <a href="" class="quick-view">
+                                        Quick view
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <div class="img">
-                                <img src="img/2.png" alt="">
-                            </div>
-                            <div class="text-block">
-                                <h3 class="m-title">Polo Shirt</h3>
-                                <p class="text">&dollar; 13.22 USD</p>
-                            </div>
-
-                            <div class="btn-inline">
-                                <a href="" class="cart-btn">
-                                    Add cart
-                                </a>
-
-                                <a href="" class="quick-view">
-                                    Quick view
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
