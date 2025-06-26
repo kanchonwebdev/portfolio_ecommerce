@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E commerce - Homepage</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -20,16 +21,14 @@
             </div>
             <div class="col">
                 <div class="inline">
-                    <a href="">About</a>
-                    <a href="">Menu</a>
-                    <a href="">SHop</a>
-                    <a href="">Cotact</a>
+                    <a href="">Shop</a>
+                    <a href="">Checkout</a>
                 </div>
             </div>
             <div class="col">
                 <div class="inline">
-                    <a href="">search</a>
-                    <a href="">cart <sup>04</sup></a>
+                    <a href="">Login into Foodpanda</a>
+                    <a href="{{ route('shop.cart')}}">cart <sup id="cartCount">{{ session('cart') ? count(session('cart')) : 0 }}</sup></a>
                 </div>
             </div>
         </div>
@@ -69,7 +68,7 @@
                                 </div>
 
                                 <div class="btn-inline">
-                                    <a href="" class="cart-btn">
+                                    <a href="" data-id="{{$item->id}}" class="cart-btn">
                                         Add cart
                                     </a>
 
@@ -93,28 +92,7 @@
             <div class="col">
                 <div class="card">
                     <div class="img">
-                        <img src="img/2.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="img">
-                        <img src="img/2.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="img">
-                        <img src="img/2.png" alt="">
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card">
-                    <div class="img">
-                        <img src="img/2.png" alt="">
+                        <img src="{{asset('img/2.png')}}" alt="">
                     </div>
                 </div>
             </div>
@@ -252,6 +230,34 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function() {
+            $('.cart-btn').on('click', function(e) {
+                e.preventDefault();
+                const id = $(this).data('id');
+                $.ajax({
+                    type: 'POST',
+                    url: '/product/add-to-cart/'+id,
+                    success: function(response) {
+                        console.log(response);
+                        $('#cartCount').text(response.cartCount);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+
     <script>
         const quickView = document.querySelectorAll('.quick-view');
         const popUp = document.querySelector('.shop-details-section');

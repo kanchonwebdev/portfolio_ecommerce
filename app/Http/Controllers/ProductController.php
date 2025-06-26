@@ -35,6 +35,7 @@ class ProductController extends Controller
             $cart[$id]['quantity']++;
         } else {
             $cart[$id] = [
+                //"id" => $product->id,
                 "name" => $product->name,
                 "quantity" => 1,
                 "price" => $product->price,
@@ -43,7 +44,15 @@ class ProductController extends Controller
         }
 
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => 'Product added to cart successfully!',
+                'cartCount' => count($cart),
+                'cart' => $cart
+            ]);
+        } else {
+            return redirect()->back()->with('success', 'Product added to cart successfully!');
+        }
     }
 
     public function removeFromCart($id)
@@ -55,7 +64,15 @@ class ProductController extends Controller
             session()->put('cart', $cart);
         }
 
-        return redirect()->back()->with('success', 'Product removed from cart successfully!');
+        if (request()->ajax()) {
+            return response()->json([
+                'success' => 'Product removed from cart successfully!',
+                'cartCount' => count($cart),
+                'cart' => $cart
+            ]);
+        } else {
+            return redirect()->back()->with('success', 'Product removed from cart successfully!');
+        }
     }
 
     public function viewCart()
@@ -73,21 +90,28 @@ class ProductController extends Controller
     public function updateCart(Request $request)
     {
         $cart = session()->get('cart', []);
+        $id = $request->id;
+        $quantity = $request->quantity;
 
-        if ($request->has('quantity')) {
-            foreach ($request->quantity as $id => $quantity) {
-                if (isset($cart[$id])) {
-                    if ($quantity <= 0) {
-                        unset($cart[$id]);
-                    } else {
-                        $cart[$id]['quantity'] = $quantity;
-                    }
-                }
+        if (isset($cart[$id])) {
+            if ($quantity <= 0) {
+                unset($cart[$id]);
+            } else {
+                $cart[$id]['quantity'] = $quantity;
             }
         }
 
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Cart updated successfully!');
+
+        if ($request->ajax()) {
+            return response()->json([
+                'success' => 'Cart updated successfully!',
+                'cartCount' => count($cart),
+                'cart' => $cart
+            ]);
+        } else {
+            return redirect()->back()->with('success', 'Cart updated successfully!');
+        }
     }
 
     public function cart()

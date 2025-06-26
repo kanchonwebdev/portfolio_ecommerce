@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E commerce - Homepage</title>
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -17,16 +18,16 @@
             </div>
             <div class="col">
                 <div class="inline">
-                    <a href="">About</a>
-                    <a href="">Menu</a>
-                    <a href="">SHop</a>
-                    <a href="">Cotact</a>
+                    <a href="">Shop</a>
+                    <a href="">Checkout</a>
                 </div>
             </div>
             <div class="col">
                 <div class="inline">
-                    <a href="">search</a>
-                    <a href="">cart <sup>04</sup></a>
+                    <a href="">Login into Foodpanda</a>
+                    <a href="{{ route('shop.cart')}}">
+                        cart <sup id="cartCount">{{ session('cart') ? count(session('cart')) : 0 }}</sup>
+                    </a>
                 </div>
             </div>
         </div>
@@ -37,11 +38,11 @@
         <div class="grid">
             <div class="col">
                 <div class="img">
-                    <img src="img/1.jpg" alt="">
+                    <img src="{{asset('img/1.jpg')}}" alt="">
                 </div>
                 <div class="text-block">
                     <p class="m-title">A unique experience</p>
-                    <h1 class="title">Checkout</h1>
+                    <h1 class="title">Cart</h1>
                 </div>
             </div>
         </div>
@@ -55,58 +56,45 @@
                     <div class="inline">
                         <p class="text">items in order</p>
                     </div>
-                    <div class="block">
-                        <div class="grid-2 border">
-                            <div class="card-inline">
-                                <div class="img">
-                                    <img src="img/2.png" alt="">
+                    @php
+                        $cart = session('cart') ?? [];
+                        $total = 0;
+                        if (count($cart) > 0) {
+                            foreach ($cart as $item) {
+                                $total += $item['price'] * $item['quantity'];
+                            }
+                        }
+
+                        $shipping = $total * 0.15;
+                        $totalWithShipping = $total + $shipping;
+                    @endphp
+
+                    @if (count($cart) > 0)
+                        @foreach ($cart as $key => $item)
+                            <div class="block" id="cartItem-{{ $key }}">
+                                <div class="grid-2 border">
+                                    <div class="card-inline">
+                                        <div class="img">
+                                            <img src="{{asset($item['image'])}}" alt="">
+                                        </div>
+                                        <div class="text-block">
+                                            <h3 class="title">${{ $item['name'] }}</h3>
+                                        </div>
+                                    </div>
+                                    <div class="card-inline ml-100">
+                                        <p class="price" id="price-{{ $key }}">&dollar; {{ $item['price'] * $item['quantity'] }} USD</p>
+                                        <input type="number" name="" data-id="{{$key}}" class="quantity" value="{{$item['quantity']}}">
+                                        <button type="submit" data-id="{{$key}}" class="remove">Remove</button>
+                                    </div>
                                 </div>
-                                <div class="text-block">
-                                    <h3 class="title">Polo Shirt</h3>
-                                    <p class="text">size: <b>medium</b></p>
-                                </div>
+                                <br>
                             </div>
-                            <div class="card-inline ml-100">
-                                <p class="price">&dollar; 13.23 USD</p>
-                                <input type="text" name="" id="quantity" value="1">
-                                <button type="submit" class="remove">remove</button>
-                            </div>
+                        @endforeach
+                    @else
+                        <div class="block">
+                            <p class="text">Your cart is empty</p>
                         </div>
-                        <br>
-                        <div class="grid-2 border">
-                            <div class="card-inline">
-                                <div class="img">
-                                    <img src="img/2.png" alt="">
-                                </div>
-                                <div class="text-block">
-                                    <h3 class="title">Polo Shirt</h3>
-                                    <p class="text">size: <b>medium</b></p>
-                                </div>
-                            </div>
-                            <div class="card-inline ml-100">
-                                <p class="price">&dollar; 13.23 USD</p>
-                                <input type="text" name="" id="quantity" value="1">
-                                <button type="submit" class="remove">remove</button>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="grid-2 border">
-                            <div class="card-inline">
-                                <div class="img">
-                                    <img src="img/2.png" alt="">
-                                </div>
-                                <div class="text-block">
-                                    <h3 class="title">Polo Shirt</h3>
-                                    <p class="text">size: <b>medium</b></p>
-                                </div>
-                            </div>
-                            <div class="card-inline ml-100">
-                                <p class="price">&dollar; 13.23 USD</p>
-                                <input type="text" name="" id="quantity" value="1">
-                                <button type="submit" class="remove">remove</button>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
             <div class="col">
@@ -120,7 +108,9 @@
                                 <p class="text">Sub Total</p>
                             </div>
                             <div class="card-inline">
-                                <p class="text">&dollar; 200 usd</p>
+                                <p class="text" id="subTotal">
+                                    &dollar; {{ $total }} USD
+                                </p>
                             </div>
                         </div>
                         <br>
@@ -129,7 +119,9 @@
                                 <p class="text">Total</p>
                             </div>
                             <div class="card-inline">
-                                <p class="text">&dollar; 250 usd</p>
+                                <p class="text" id="total">
+                                    &dollar; {{ $totalWithShipping }} USD
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -209,6 +201,84 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function () {
+            $('.remove').on('click', function (e) {
+                e.preventDefault();
+                const id = $(this).data('id');
+                $.ajax({
+                    type: 'GET',
+                    url: '/product/remove-from-cart/' + id,
+                    success: function (response) {
+                        console.log(response);
+                        $('#cartCount').text(response.cartCount);
+                        $('#cartItem-' + id).remove();
+
+                        let subTotal = 0;
+                        let shipping = 0;
+                        let total = 0;
+
+                        Object.values(response.cart).forEach(item => {
+                            subTotal += item.price * item.quantity;
+                        });
+
+                        shipping = subTotal * 0.15;
+                        total = subTotal + shipping;
+
+                        $('#subTotal').text(subTotal.toFixed(2) + ' USD');
+                        $('#total').text(total.toFixed(2) + ' USD');
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+
+            $('.quantity').on('change', function (e) {
+                e.preventDefault();
+
+                const id = $(this).data('id');
+                const quantity = $(this).val();
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/product/update-cart/',
+                    data: {
+                        quantity: quantity,
+                        id: id
+                    },
+                    success: function (response) {
+                        $('#cartCount').text(response.cartCount);
+                        let subTotal = 0;
+                        let shipping = 0;
+                        let total = 0;
+
+                        Object.values(response.cart).forEach(item => {
+                            subTotal += item.price * item.quantity;
+                        });
+
+                        shipping = subTotal * 0.15;
+                        total = subTotal + shipping;
+
+                        $('#subTotal').html(subTotal.toFixed(2) + ' USD');
+                        $('#total').html(total.toFixed(2) + ' USD');
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
