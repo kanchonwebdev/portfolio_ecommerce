@@ -21,6 +21,9 @@
             <li class="list-group-item">
                 <a href="{{ route('tag.index') }}">Tag</a>
             </li>
+            <li class="list-group-item">
+                <a href="{{ route('order.index') }}">Order</a>
+            </li>
         </ul>
     </div>
 </div>
