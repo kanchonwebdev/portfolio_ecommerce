@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E commerce - Homepage</title>
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -46,10 +47,22 @@
             </div>
         </div>
     </div>
+    @php
+$cart = session('cart') ?? [];
+$total = 0;
+if (count($cart) > 0) {
+    foreach ($cart as $item) {
+        $total += $item['price'] * $item['quantity'];
+    }
+}
 
+$shipping = $total * 0.15;
+$totalWithShipping = $total + $shipping;
+    @endphp
     <!-- checkout section -->
     <div class="checkout-section">
         <div class="grid">
+            @if (session('cart') && count(session('cart')) > 0)
             <div class="col">
                 <div class="card">
                     <div class="inline">
@@ -59,6 +72,10 @@
                     <div class="block">
                         <label for="email">email*</label>
                         <input type="email" name="" id="email">
+                    </div>
+                    <div class="block">
+                        <label for="phone">phone*</label>
+                        <input type="text" name="" id="phone">
                     </div>
                 </div>
                 <div class="card">
@@ -72,8 +89,6 @@
                     </div>
                     <div class="block">
                         <label for="address">Street address *</label>
-                        <input type="text" name="" id="address">
-                        <br>
                         <input type="text" name="" id="address">
                     </div>
                     <div class="grid-3">
@@ -125,18 +140,7 @@
                     <div class="inline">
                         <p class="text">items in order</p>
                     </div>
-                    @php
-                        $cart = session('cart') ?? [];
-                        $total = 0;
-                        if (count($cart) > 0) {
-                            foreach ($cart as $item) {
-                                $total += $item['price'] * $item['quantity'];
-                            }
-                        }
 
-                        $shipping = $total * 0.15;
-                        $totalWithShipping = $total + $shipping;
-                    @endphp
                     <div class="block">
                         @if (count($cart) > 0)
                             @foreach ($cart as $key => $item)
@@ -197,12 +201,16 @@
                         <button type="submit">apply</button>
                     </div>
                 </div>
-                <div class="card">
-                    <div class="block">
-                        <button type="submit">place order</button>
+
+                @if (session('cart') && count(session('cart')) > 0)
+                    <div class="card">
+                        <div class="block">
+                            <button type="submit" id="placeOrder">place order</button>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
+            @endif
         </div>
     </div>
 
@@ -272,6 +280,44 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function () {
+            $('#placeOrder').on('click', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route("checkout.store") }}',
+                    data: {
+                        name: $('#name').val(),
+                        email: $('#email').val(),
+                        phone: $('#phone').val(),
+                        address: $('#address').val(),
+                        city: $('#city').val(),
+                        state: $('#state').val(),
+                        zip: $('#zip').val(),
+                        country: $('#country').val(),
+                        id: {{ auth()->id() }},
+                        total_amount: {{ $totalWithShipping }},
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

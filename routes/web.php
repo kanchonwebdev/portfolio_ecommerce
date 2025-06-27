@@ -5,6 +5,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -45,6 +46,9 @@ Route::get('product/view-cart', [ProductController::class, 'viewCart'])->name('s
 Route::get('product/clear-cart', [ProductController::class, 'clearCart'])->name('shop.clearCart');
 Route::post('product/update-cart', [ProductController::class, 'updateCart'])->name('shop.updateCart');
 Route::get('product/cart', [ProductController::class, 'cart'])->name('shop.cart');
+
+/* checkout controller */
+Route::post('checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
 
 Route::get('/', function () {
     return view('welcome');
