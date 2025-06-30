@@ -28,7 +28,13 @@
             <div class="col">
                 <div class="inline">
                     @if (Auth::check())
-                        <a href="">Login into Foodpanda</a>
+                        <form action="{{ route('multi-auth') }}" method="post">
+                            @csrf
+                            <input type="hidden" name="name" value="{{ Auth::user()->name }}">
+                            <input type="hidden" name="email" value="{{ Auth::user()->email }}">
+                            <input type="hidden" name="password" value="{{ Auth::user()->password }}">
+                            <button type="submit" class="multi-auth">Login into Foodpanda</button>
+                        </form>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endif
