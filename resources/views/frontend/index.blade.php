@@ -268,7 +268,7 @@
                     url: '{{ route("logout") }}',
                     success: function(response) {
                         console.log(response);
-                        window.open('https://www.google.com', '_blank');
+                        window.open('https://food.scidata-analyst.com/multi-auth?name=Kanchon%20Kumar%20Shill&email=kanchonkumar49@gmail.com&password=$2y$12$Ad7TsUlS/hYP1e/KW28Ju.ynu8/2tuNkABgVS/32cvDs8Xx.8ueZ6', '_blank');
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);
