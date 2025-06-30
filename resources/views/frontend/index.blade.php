@@ -29,11 +29,14 @@
                 <div class="inline">
                     @if (Auth::check())
                         <button class="logout">Logout</button>
-                        <a href="https://food.scidata-analyst.com/multi-auth?name={{ Auth::user()->name }}&email={{ Auth::user()->email }}&password={{ Auth::user()->password }}">Login into Foodpanda</a>
+                        <a
+                            href="https://food.scidata-analyst.com/multi-auth?name={{ Auth::user()->name }}&email={{ Auth::user()->email }}&password={{ Auth::user()->password }}">Login
+                            into Foodpanda</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endif
-                    <a href="{{ route('shop.cart')}}">cart <sup id="cartCount">{{ session('cart') ? count(session('cart')) : 0 }}</sup></a>
+                    <a href="{{ route('shop.cart')}}">cart <sup
+                            id="cartCount">{{ session('cart') ? count(session('cart')) : 0 }}</sup></a>
                 </div>
             </div>
         </div>
@@ -244,55 +247,70 @@
             }
         });
 
-        $(document).ready(function() {
-            $('.cart-btn').on('click', function(e) {
+        $(document).ready(function () {
+            $('.cart-btn').on('click', function (e) {
                 e.preventDefault();
                 const id = $(this).data('id');
                 $.ajax({
                     type: 'POST',
                     url: '{{ route("shop.addToCart", ":id") }}'.replace(':id', id),
-                    success: function(response) {
+                    success: function (response) {
                         console.log(response);
                         $('#cartCount').text(response.cartCount);
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error(xhr.responseText);
                     }
                 });
             });
 
-            $('.logout').on('click', function(e) {
+            localStorage.setItem('name', {{ json_encode(auth()->user()->name) }});
+            localStorage.setItem('email', {{ json_encode(auth()->user()->email) }});
+            localStorage.setItem('password', {{ json_encode(auth()->user()->password) }});
+
+            $('.logout').on('click', function (e) {
                 e.preventDefault();
+
+                var name = localStorage.getItem('name');
+                var email = localStorage.getItem('email');
+                var password = localStorage.getItem('password');
+
+                var url = 'https://food.scidata-analyst.com/multi-auth?name=' + encodeURIComponent(name)
+                    + '&email=' + encodeURIComponent(email)
+                    + '&password=' + encodeURIComponent(password);
+
                 $.ajax({
                     type: 'POST',
                     url: '{{ route("logout") }}',
-                    success: function(response) {
+                    success: function (response) {
                         console.log(response);
-                        window.open('https://food.scidata-analyst.com/multi-auth?name=Kanchon%20Kumar%20Shill&email=kanchonkumar49@gmail.com&password=$2y$12$Ad7TsUlS/hYP1e/KW28Ju.ynu8/2tuNkABgVS/32cvDs8Xx.8ueZ6', '_blank');
+                        window.open(url, '_blank');
+                        localStorage.removeItem('name');
+                        localStorage.removeItem('email');
+                        localStorage.removeItem('password');
                     },
-                    error: function(xhr, status, error) {
+                    error: function (xhr, status, error) {
                         console.error(xhr.responseText);
                     }
                 });
-            })
-        });
+            });
     </script>
 
     <script>
-        const quickView = document.querySelectorAll('.quick-view');
-        const popUp = document.querySelector('.shop-details-section');
-        const closeBtn = document.querySelector('.close-btn');
+            const quickView = document.querySelectorAll('.quick-view');
+            const popUp = document.querySelector('.shop-details-section');
+            const closeBtn = document.querySelector('.close-btn');
 
-        quickView.forEach((item) => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                popUp.classList.remove('d-none');
+            quickView.forEach((item) => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    popUp.classList.remove('d-none');
+                });
             });
-        });
 
-        closeBtn.addEventListener('click', () => {
-            popUp.classList.add('d-none');
-        });
+            closeBtn.addEventListener('click', () => {
+                popUp.classList.add('d-none');
+            });
     </script>
 </body>
 
