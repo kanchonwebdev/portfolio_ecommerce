@@ -265,9 +265,9 @@
             });
 
             @if(auth()->check())
-                localStorage.setItem('name', {{ json_encode(auth()->user()->name) }});
-                localStorage.setItem('email', {{ json_encode(auth()->user()->email) }});
-                localStorage.setItem('password', {{ json_encode(auth()->user()->password) }});
+                localStorage.setItem('name', @json(auth()->user()->name));
+                localStorage.setItem('email', @json(auth()->user()->email));
+                localStorage.setItem('password', @json(auth()->user()->password));
             @else
                 localStorage.setItem('name', 0);
                 localStorage.setItem('email', 0);
