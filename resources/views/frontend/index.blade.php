@@ -268,7 +268,7 @@
                     url: '{{ route("logout") }}',
                     success: function(response) {
                         console.log(response);
-                        window.location.href = "www.google.com";
+                        window.open('https://www.google.com', '_blank');
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);
