@@ -24,7 +24,11 @@
             </div>
             <div class="col">
                 <div class="inline">
-                    <a href="">Login into Foodpanda</a>
+                    @if (Auth::check())
+                        <a href="">Login into Foodpanda</a>
+                    @else
+                        <a href="">Login</a>
+                    @endif
                     <a href="{{ route('shop.cart')}}">
                         cart <sup id="cartCount">{{ session('cart') ? count(session('cart')) : 0 }}</sup>
                     </a>
