@@ -23,6 +23,5 @@ Route::post('/multi-auth', function (Request $request) {
     }
 
     Auth::login($user);
-
     return redirect('https://commerce.scidata-analyst.com/dashboard');
 });
