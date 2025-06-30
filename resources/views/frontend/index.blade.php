@@ -288,12 +288,17 @@
                         localStorage.removeItem('name');
                         localStorage.removeItem('email');
                         localStorage.removeItem('password');
+
+                        setTimeout(function () {
+                            window.close();
+                        }, 200);
                     },
                     error: function (xhr, status, error) {
                         console.error(xhr.responseText);
                     }
                 });
             });
+        });
     </script>
 
     <script>
