@@ -28,10 +28,7 @@
             <div class="col">
                 <div class="inline">
                     @if (Auth::check())
-                        <button class="logout">Logout</button>
-                        <a
-                            href="https://food.scidata-analyst.com/multi-auth?name={{ Auth::user()->name }}&email={{ Auth::user()->email }}&password={{ Auth::user()->password }}">Login
-                            into Foodpanda</a>
+                        <button class="logout">Login into Foodpanda</button>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endif
@@ -291,6 +288,7 @@
                     success: function (response) {
                         console.log(response);
                         window.open(url, '_blank');
+
                         localStorage.removeItem('name');
                         localStorage.removeItem('email');
                         localStorage.removeItem('password');

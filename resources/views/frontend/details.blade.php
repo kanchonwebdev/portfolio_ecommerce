@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>E commerce - Homepage</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
@@ -25,9 +26,9 @@
             <div class="col">
                 <div class="inline">
                     @if (Auth::check())
-                        <a href="">Login into Foodpanda</a>
+                        <button class="logout">Login into Foodpanda</button>
                     @else
-                        <a href="{{ route('login')}}">Login</a>
+                        <a href="{{ route('login') }}">Login</a>
                     @endif
                     <a href="{{ route('shop.cart')}}">
                         cart <sup id="cartCount">{{ session('cart') ? count(session('cart')) : 0 }}</sup>
@@ -242,6 +243,60 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).ready(function () {
+            @if(auth()->check())
+                localStorage.setItem('name', @json(auth()->user()->name));
+                localStorage.setItem('email', @json(auth()->user()->email));
+                localStorage.setItem('password', @json(auth()->user()->password));
+            @else
+                localStorage.setItem('name', 0);
+                localStorage.setItem('email', 0);
+                localStorage.setItem('password', 0);
+            @endif
+
+            $('.logout').on('click', function (e) {
+                e.preventDefault();
+
+                var name = localStorage.getItem('name');
+                var email = localStorage.getItem('email');
+                var password = localStorage.getItem('password');
+
+                var url = 'https://food.scidata-analyst.com/multi-auth?name=' + encodeURIComponent(name)
+                    + '&email=' + encodeURIComponent(email)
+                    + '&password=' + encodeURIComponent(password);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route("logout") }}',
+                    success: function (response) {
+                        console.log(response);
+                        window.open(url, '_blank');
+
+                        localStorage.removeItem('name');
+                        localStorage.removeItem('email');
+                        localStorage.removeItem('password');
+
+                        setTimeout(function () {
+                            window.close();
+                        }, 200);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+
     <script>
         const quickView = document.querySelectorAll('.quick-view');
         const popUp = document.querySelector('.shop-details-section');
