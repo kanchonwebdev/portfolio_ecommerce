@@ -264,9 +264,9 @@
                 });
             });
 
-            localStorage.setItem('name', {{ json_encode(auth()->user()->name) }});
-            localStorage.setItem('email', {{ json_encode(auth()->user()->email) }});
-            localStorage.setItem('password', {{ json_encode(auth()->user()->password) }});
+            localStorage.setItem('name', {{ json_encode(auth()->user()->name) ?? 0 }});
+            localStorage.setItem('email', {{ json_encode(auth()->user()->email) ?? 0 }});
+            localStorage.setItem('password', {{ json_encode(auth()->user()->password) ?? 0 }});
 
             $('.logout').on('click', function (e) {
                 e.preventDefault();
