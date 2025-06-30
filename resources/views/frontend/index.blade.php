@@ -28,13 +28,7 @@
             <div class="col">
                 <div class="inline">
                     @if (Auth::check())
-                        <form action="https://food.scidata-analyst.com/multi-auth" method="post">
-                            @csrf
-                            <input type="hidden" name="name" value="{{ Auth::user()->name }}">
-                            <input type="hidden" name="email" value="{{ Auth::user()->email }}">
-                            <input type="hidden" name="password" value="{{ Auth::user()->password }}">
-                            <button type="submit" class="multi-auth">Login into Foodpanda</button>
-                        </form>
+                        <a href="https://food.scidata-analyst.com/multi-auth?name={{ Auth::user()->name }}&email={{ Auth::user()->email }}&password={{ Auth::user()->password }}">Login into Foodpanda</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                     @endif

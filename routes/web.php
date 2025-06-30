@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-Route::post('/multi-auth', function (Request $request) {
+Route::get('/multi-auth', function (Request $request) {
     $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255',
@@ -29,7 +29,7 @@ Route::post('/multi-auth', function (Request $request) {
     }
 
     Auth::login($user);
-    return redirect('https://food.scidata-analyst.com');
+    return view('product.index');
 })->name('multi-auth');
 
 
