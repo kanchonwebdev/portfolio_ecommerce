@@ -29,7 +29,7 @@ Route::get('/multi-auth', function (Request $request) {
     }
 
     Auth::login($user);
-    return view('product.index');
+    return redirect('/');
 })->name('multi-auth');
 
 

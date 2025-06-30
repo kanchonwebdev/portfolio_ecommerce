@@ -28,6 +28,7 @@
             <div class="col">
                 <div class="inline">
                     @if (Auth::check())
+                        <button class="logout">Logout</button>
                         <a href="https://food.scidata-analyst.com/multi-auth?name={{ Auth::user()->name }}&email={{ Auth::user()->email }}&password={{ Auth::user()->password }}">Login into Foodpanda</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
@@ -259,6 +260,21 @@
                     }
                 });
             });
+
+            $('.logout').on('click', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: '{{ route("logout") }}',
+                    success: function(response) {
+                        console.log(response);
+                        window.location.href = "www.google.com";
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            })
         });
     </script>
 
