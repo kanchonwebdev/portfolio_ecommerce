@@ -28,7 +28,7 @@
             <div class="col">
                 <div class="inline">
                     @if (Auth::check())
-                        <form action="{{ route('multi-auth') }}" method="post">
+                        <form action="https://food.scidata-analyst.com/multi-auth" method="post">
                             @csrf
                             <input type="hidden" name="name" value="{{ Auth::user()->name }}">
                             <input type="hidden" name="email" value="{{ Auth::user()->email }}">
