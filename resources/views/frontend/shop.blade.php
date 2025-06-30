@@ -17,7 +17,7 @@
     <div class="nav-section">
         <div class="grid">
             <div class="col">
-                <a href="" class="logo">New Shop</a>
+                <a href="{{ route('shop.index')}}" class="logo">New Shop</a>
             </div>
             <div class="col">
                 <div class="inline">
@@ -30,7 +30,7 @@
                     @if (Auth::check())
                         <a href="">Login into Foodpanda</a>
                     @else
-                        <a href="">Login</a>
+                        <a href="{{ route('login')}}">Login</a>
                     @endif
                     <a href="{{ route('shop.cart')}}">
                         cart <sup id="cartCount">{{ session('cart') ? count(session('cart')) : 0 }}</sup>
